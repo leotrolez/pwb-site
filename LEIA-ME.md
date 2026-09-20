@@ -6,7 +6,7 @@ estática grátis (Cloudflare Pages, Netlify, GitHub Pages) e aponte seu domíni
 ## Antes de publicar
 1. Troque `https://SEU-DOMINIO.com.br` pelo endereço real em: `index.html` (canonical, og:url, og:image, twitter:image, JSON-LD),
    `robots.txt` e `sitemap.xml`.
-2. Botões de download apontam para `https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe`: o clique já baixa o instalador da versão mais nova, sem passar por página. Isso só funciona depois de uma release (1.0.3 ou mais nova) publicada com o instalador de nome fixo `PWB-Setup.exe`.
+2. Os botões de download baixam `download/PWB-Instalador.exe` (~170 KB). É um instalador leve: ele baixa o instalador completo do app direto das releases do GitHub (a versão mais nova; se a consulta falhar, usa a 1.0.2), confere o hash e abre. Se a versão for mais antiga, o próprio app se atualiza sozinho na primeira abertura. Código em `tools/downloader/` do repositório do app; para recompilar: `powershell -File tools/downloader/build.ps1` e copie `dist/PWB-Instalador.exe` para `download/`.
 
 ## SEO (o que fazer depois de publicar)
 - Cadastre o site no Google Search Console e envie o `sitemap.xml`; faça o mesmo no Bing Webmaster Tools.
