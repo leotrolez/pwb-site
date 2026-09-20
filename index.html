@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poke World Bot: bot para Poke Idle World com Auto Hunt, Auto Seller e Auto Refill</title>
+<meta name="description" content="Poke World Bot é o aplicativo para Windows que automatiza o farm no Poke Idle World: Auto Hunt, venda no Mark, reabastecimento, análise de lucro por hora e até 4 contas. Teste grátis por 30 minutos.">
+<meta name="keywords" content="bot poke idle world, poke idle world bot, bot poke world, poke world bot, auto hunt poke world, auto seller, auto refill, farm automático pokémon idle, bot pokémon idle">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#060a18">
+<!-- TROQUE https://SEU-DOMINIO.com.br pelo endereço real do site (aqui, no og:url, no JSON-LD, no robots.txt e no sitemap.xml) -->
+<link rel="canonical" href="https://SEU-DOMINIO.com.br/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Poke World Bot">
+<meta property="og:title" content="Poke World Bot: farme no automático e veja seu lucro real por hora">
+<meta property="og:description" content="Auto Hunt, Auto Seller, Auto Refill, análise de caçada e até 4 contas ao mesmo tempo. Baixe e teste grátis por 30 minutos.">
+<meta property="og:url" content="https://SEU-DOMINIO.com.br/">
+<meta property="og:image" content="https://SEU-DOMINIO.com.br/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Poke World Bot: farme no automático">
+<meta name="twitter:description" content="Auto Hunt, Auto Seller, Auto Refill e análise de lucro por hora. Teste grátis por 30 minutos.">
+<meta name="twitter:image" content="https://SEU-DOMINIO.com.br/assets/og-image.jpg">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/icon.webp" type="image/webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Poke World Bot",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "description": "Aplicativo para Windows que automatiza o farm no Poke World: Auto Hunt, Auto Seller, Auto Refill, análise de lucro por hora e múltiplas contas.",
+      "image": "https://SEU-DOMINIO.com.br/assets/og-image.jpg",
+      "downloadUrl": "https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe",
+      "offers": [
+        { "@type": "Offer", "name": "Teste grátis", "price": "0", "priceCurrency": "BRL", "description": "30 minutos com todos os recursos" },
+        { "@type": "Offer", "name": "Plano Mensal", "price": "29.90", "priceCurrency": "BRL", "description": "30 dias de acesso" },
+        { "@type": "Offer", "name": "Acesso Vitalício", "price": "249.90", "priceCurrency": "BRL", "description": "Acesso sem prazo de validade" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "O que é o Poke World Bot?", "acceptedAnswer": { "@type": "Answer", "text": "É um aplicativo para Windows que abre o jogo dentro dele e automatiza o farm: caça, venda no Mark, reabastecimento de pokébolas e poções, pesca, análise de Pokémon e muito mais, em até 4 contas ao mesmo tempo." } },
+        { "@type": "Question", "name": "Como funciona o teste grátis?", "acceptedAnswer": { "@type": "Answer", "text": "Você baixa o instalador, cria sua conta, confirma o e-mail com um código e ganha 30 minutos de acesso com todos os recursos liberados. Não pede cartão." } },
+        { "@type": "Question", "name": "Quanto custa o Poke World Bot?", "acceptedAnswer": { "@type": "Answer", "text": "O Plano Mensal custa R$ 29,90 por 30 dias e o Acesso Vitalício custa R$ 249,90 em pagamento único." } },
+        { "@type": "Question", "name": "Precisa deixar o computador ligado?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O bot roda no seu PC com Windows, dentro do aplicativo. Ele é leve e você pode usar o computador normalmente enquanto ele trabalha." } },
+        { "@type": "Question", "name": "O aplicativo atualiza sozinho?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Ao abrir, o aplicativo verifica se há versão nova, baixa e instala sozinho, sem você precisar procurar nada." } },
+        { "@type": "Question", "name": "Funciona em Mac ou Linux?", "acceptedAnswer": { "@type": "Answer", "text": "Por enquanto o Poke World Bot funciona apenas em Windows 10 e 11." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #060a18;
+    --bg2: #0a1024;
+    --panel: #0e1530;
+    --panel2: #121b3a;
+    --line: rgba(255,255,255,.09);
+    --text: #e8ecf8;
+    --muted: #9aa6c4;
+    --red: #e63946;
+    --red2: #ff5a67;
+    --cyan: #22d3ee;
+    --gold: #fbbf24;
+    --green: #34d399;
+    --radius: 18px;
+    --max: 1160px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(var(--max), 100% - 32px); margin-inline: auto; }
+  h1, h2, h3 { line-height: 1.12; letter-spacing: -.02em; }
+  .grad { background: linear-gradient(90deg, var(--red2), var(--gold) 45%, var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* Botões */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; border-radius: 14px; padding: 15px 26px; font-size: 16px; border: 1px solid transparent; cursor: pointer; transition: transform .15s, box-shadow .2s, background .2s; }
+  .btn[hidden] { display: none; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: linear-gradient(180deg, var(--red2), var(--red)); color: #fff; box-shadow: 0 10px 30px -8px rgba(230,57,70,.65), inset 0 1px 0 rgba(255,255,255,.25); }
+  .btn-primary:hover { box-shadow: 0 14px 38px -8px rgba(230,57,70,.85), inset 0 1px 0 rgba(255,255,255,.25); }
+  .btn-ghost { background: rgba(255,255,255,.05); border-color: var(--line); color: var(--text); }
+  .btn-ghost:hover { background: rgba(255,255,255,.09); }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn-lg { padding: 18px 32px; font-size: 17px; }
+
+  /* Botão do Discord (ao lado do download) */
+  .btn-discord { display: inline-flex; align-items: center; gap: 12px; padding: 10px 16px 10px 12px; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #4a86dc, #3163b5); border: 1px solid rgba(255,255,255,.18); box-shadow: 0 10px 28px -10px rgba(74,134,220,.7), inset 0 1px 0 rgba(255,255,255,.22); transition: transform .15s, box-shadow .2s; }
+  .btn-discord:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -10px rgba(74,134,220,.9), inset 0 1px 0 rgba(255,255,255,.22); }
+  .btn-discord svg { width: 30px; height: 30px; flex: none; fill: #fff; }
+  .btn-discord span { display: block; line-height: 1.2; text-align: left; }
+  .btn-discord small { display: block; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.78); }
+  .btn-discord b { display: block; font-size: 14px; font-weight: 800; }
+  .btn-discord em { font-style: normal; font-size: 13px; font-weight: 800; margin-left: 4px; opacity: .95; white-space: nowrap; }
+
+  /* Navegação */
+  header.nav { position: fixed; inset: 0 0 auto 0; z-index: 50; background: rgba(6,10,24,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav-in { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .02em; font-size: 18px; }
+  .brand img { width: 38px; height: 38px; }
+  .brand b { color: var(--cyan); }
+  nav.links { display: flex; gap: 26px; font-size: 14px; font-weight: 600; color: var(--muted); }
+  nav.links a:hover { color: #fff; }
+  .nav .btn { padding: 10px 18px; font-size: 14px; border-radius: 11px; }
+
+  /* Hero */
+  .hero { position: relative; padding: 132px 0 70px; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: -20% -10% auto -10%; height: 90%; background:
+      radial-gradient(600px 400px at 18% 30%, rgba(230,57,70,.22), transparent 70%),
+      radial-gradient(560px 420px at 88% 20%, rgba(34,211,238,.18), transparent 70%); pointer-events: none; }
+  .hero-grid { position: relative; display: grid; grid-template-columns: 1.08fr .92fr; gap: 40px; align-items: center; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 99px; background: rgba(34,211,238,.09); border: 1px solid rgba(34,211,238,.25); color: #9cecf9; font-size: 13px; font-weight: 700; }
+  .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(52,211,153,.7); animation: pulse 2s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
+  h1 { font-size: clamp(36px, 5.6vw, 64px); font-weight: 900; margin: 18px 0 18px; }
+  .lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 34em; }
+  .lead strong { color: #fff; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0 14px; }
+  .fine { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .fine span::before { content: "✓ "; color: var(--green); font-weight: 800; }
+  .hero-art { position: relative; display: grid; place-items: center; }
+  .hero-art .halo { position: absolute; width: 78%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(230,57,70,.35), rgba(34,211,238,.12) 60%, transparent 70%); filter: blur(30px); }
+  .hero-art img { position: relative; width: min(460px, 86%); animation: float 6s ease-in-out infinite; filter: drop-shadow(0 30px 40px rgba(0,0,0,.55)); }
+  @keyframes float { 50% { transform: translateY(-12px); } }
+  .chip { position: absolute; padding: 9px 14px; background: rgba(14,21,48,.92); border: 1px solid var(--line); border-radius: 12px; font-size: 13px; font-weight: 700; backdrop-filter: blur(8px); box-shadow: 0 12px 30px -10px rgba(0,0,0,.6); white-space: nowrap; }
+  .chip small { display: block; font-weight: 500; color: var(--muted); font-size: 11px; }
+  .chip.a { left: -2%; top: 14%; } .chip.b { right: -2%; top: 40%; } .chip.c { left: 4%; bottom: 8%; }
+  .chip.d { right: 2%; top: 9%; } .chip.e { right: 0; bottom: 10%; } .chip.f { left: -10%; top: 46%; }
+  .chip .g { color: var(--green); } .chip .y { color: var(--gold); } .chip .c { color: var(--cyan); }
+
+  /* Faixa de confiança */
+  .strip { border-block: 1px solid var(--line); background: var(--bg2); }
+  .strip-in { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; padding: 20px 0; width: min(1360px, 100% - 32px); }
+  @media (max-width: 1150px) { .strip-in { grid-template-columns: repeat(3, 1fr); gap: 10px; } }
+  .si { display: flex; align-items: center; gap: 10px; padding: 10px 8px; border-radius: 14px; border: 1px solid transparent; transition: background .2s, border-color .2s; }
+  .si:hover { background: rgba(255,255,255,.04); border-color: var(--line); }
+  .si i { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-style: normal; font-size: 20px; background: linear-gradient(135deg, rgba(230,57,70,.25), rgba(34,211,238,.2)); border: 1px solid var(--line); }
+  .si b { display: block; font-size: 14px; font-weight: 800; color: #fff; line-height: 1.25; }
+  .si span { display: block; font-size: 12px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+
+  /* Seções */
+  section { padding: 92px 0; }
+  .sec-head { text-align: center; max-width: 760px; margin: 0 auto 52px; }
+  .kicker { color: var(--cyan); font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  h2 { font-size: clamp(30px, 4.2vw, 46px); font-weight: 900; margin: 10px 0 14px; }
+  .sec-head p { color: var(--muted); font-size: 18px; }
+
+  /* Dor -> solução */
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .vs > div { border-radius: var(--radius); padding: 30px; border: 1px solid var(--line); }
+  .vs .bad { background: linear-gradient(180deg, rgba(230,57,70,.08), transparent); }
+  .vs .good { background: linear-gradient(180deg, rgba(34,211,238,.10), transparent); border-color: rgba(34,211,238,.3); }
+  .vs h3 { font-size: 21px; margin-bottom: 16px; }
+  .vs ul { list-style: none; display: grid; gap: 12px; }
+  .vs li { display: flex; gap: 12px; color: var(--muted); }
+  .vs li::before { flex: none; font-weight: 900; }
+  .vs .bad li::before { content: "✕"; color: var(--red2); }
+  .vs .good li::before { content: "✓"; color: var(--green); }
+  .vs .good li { color: var(--text); }
+
+  /* Recursos */
+  .feats { display: grid; grid-template-columns: 1fr; gap: 26px; }
+  .feat { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; transition: transform .2s, border-color .2s, box-shadow .2s; }
+  .feat:hover { transform: translateY(-4px); border-color: rgba(34,211,238,.4); box-shadow: 0 18px 40px -18px rgba(34,211,238,.35); }
+  .ico { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; font-size: 22px; margin-bottom: 16px; background: linear-gradient(135deg, rgba(230,57,70,.25), rgba(34,211,238,.2)); border: 1px solid var(--line); }
+  .feat h3 { font-size: 19px; margin-bottom: 8px; }
+  .feat p { color: var(--muted); font-size: 15px; }
+  .tag { position: absolute; top: 18px; right: 18px; font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 99px; background: rgba(251,191,36,.14); color: var(--gold); border: 1px solid rgba(251,191,36,.3); }
+
+
+  /* Prints do bot dentro dos cards (aparecem sozinhos quando o arquivo existe em assets/prints/) */
+  .shot[hidden] { display: none; }
+  .shot { grid-area: shot; margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #08102a; aspect-ratio: 2 / 1; cursor: zoom-in; box-shadow: 0 20px 50px -25px rgba(0,0,0,.8); }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; transition: transform .4s; }
+  .feat:hover .shot img { transform: scale(1.02); }
+  /* Card com print: imagem grande de um lado e o texto do outro (alterna a cada card), para o print ficar legível. */
+  .feat:has(.shot:not([hidden])) { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); grid-template-areas: "shot ." "shot ico" "shot title" "shot desc" "shot ."; grid-template-rows: 1fr auto auto auto 1fr; column-gap: 34px; padding: 22px; align-items: start; }
+  .feat:has(.shot:not([hidden])):nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.75fr); grid-template-areas: ". shot" "ico shot" "title shot" "desc shot" ". shot"; }
+  .feat:has(.shot:not([hidden])) .ico { grid-area: ico; align-self: start; margin: 0 0 14px; }
+  .feat:has(.shot:not([hidden])) h3 { grid-area: title; font-size: 24px; }
+  .feat:has(.shot:not([hidden])) p { grid-area: desc; align-self: start; font-size: 16px; }
+  .feat:has(.shot:not([hidden])) .tag { top: 34px; right: auto; left: 34px; z-index: 2; }
+  .feat:has(.shot:not([hidden])):nth-child(even) .tag { left: auto; right: 34px; }
+  @media (max-width: 900px) {
+    .feat:has(.shot:not([hidden])), .feat:has(.shot:not([hidden])):nth-child(even) { grid-template-columns: 1fr; grid-template-areas: "shot" "ico" "title" "desc"; grid-template-rows: auto auto auto auto; padding: 16px; }
+    .feat:has(.shot:not([hidden])) .ico { align-self: start; margin: 16px 0 12px; }
+    .feat:has(.shot:not([hidden])) .tag, .feat:has(.shot:not([hidden])):nth-child(even) .tag { left: auto; right: 28px; top: 28px; }
+  }
+  .shot-big { width: 100%; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 30px 60px -25px rgba(0,0,0,.7); cursor: zoom-in; }
+  dialog.lightbox { border: 0; background: transparent; max-width: 96vw; max-height: 94vh; padding: 0; }
+  dialog.lightbox::backdrop { background: rgba(3,6,16,.88); backdrop-filter: blur(4px); }
+  dialog.lightbox img { max-width: 96vw; max-height: 90vh; border-radius: 12px; display: block; margin: auto; box-shadow: 0 30px 80px rgba(0,0,0,.8); }
+  dialog.lightbox p { text-align: center; color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+  /* Showcase (interface ilustrativa) */
+  .show { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .show.rev .show-art { order: 2; }
+  .show-txt h2 { text-align: left; }
+  .show-txt p { color: var(--muted); font-size: 17px; margin-bottom: 18px; }
+  .ticks { list-style: none; display: grid; gap: 11px; }
+  .ticks li { display: flex; gap: 11px; }
+  .ticks li::before { content: "✓"; color: var(--green); font-weight: 900; flex: none; }
+  .win { background: #0b1226; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 30px 60px -25px rgba(0,0,0,.7), 0 0 0 1px rgba(34,211,238,.05); overflow: hidden; font-size: 13px; }
+  .win-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: #0f1730; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; font-weight: 700; }
+  .win-bar i { width: 10px; height: 10px; border-radius: 50%; background: #2a3556; }
+  .win-bar span { margin-left: 8px; }
+  .win-body { padding: 16px; display: grid; gap: 10px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,.04); border: 1px solid var(--line); }
+  .row em { font-style: normal; color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .row b.g { color: var(--green); } .row b.y { color: var(--gold); } .row b.c { color: var(--cyan); } .row b.r { color: var(--red2); }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .kpi { padding: 12px; border-radius: 10px; background: rgba(255,255,255,.04); border: 1px solid var(--line); }
+  .kpi small { color: var(--muted); font-size: 11px; display: block; }
+  .kpi b { font-size: 20px; }
+  .bars { display: flex; align-items: flex-end; gap: 6px; height: 84px; padding: 4px 2px 0; }
+  .bars i { flex: 1; border-radius: 5px 5px 0 0; background: linear-gradient(180deg, var(--cyan), rgba(34,211,238,.25)); }
+  .note { text-align: center; color: #6f7ba0; font-size: 12px; margin-top: 12px; }
+
+  .contas-ticks { grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
+  .contas-ticks li { padding: 16px 18px; border-radius: 14px; background: var(--panel); border: 1px solid var(--line); font-size: 15px; color: var(--text); }
+  @media (max-width: 900px) { .contas-ticks { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .contas-ticks { grid-template-columns: 1fr; } }
+
+  /* Como funciona */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: s; }
+  .step { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px 26px; counter-increment: s; }
+  .step::before { content: counter(s); position: absolute; top: -18px; left: 24px; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-weight: 900; background: linear-gradient(180deg, var(--red2), var(--red)); box-shadow: 0 8px 20px -6px rgba(230,57,70,.7); }
+  .step h3 { font-size: 19px; margin-bottom: 8px; }
+  .step p { color: var(--muted); font-size: 15px; }
+
+
+  /* Vídeo tutorial */
+  .vid-card { display: grid; grid-template-columns: .9fr 1.1fr; gap: 44px; align-items: center; padding: 44px; border-radius: 26px; border: 1px solid var(--line); background: linear-gradient(160deg, #141b36, #0b1122 70%); box-shadow: 0 30px 70px -30px rgba(0,0,0,.7); }
+  .vid-kicker { display: flex; align-items: center; gap: 12px; color: #8fb4ff; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  .vid-kicker::before { content: ""; width: 26px; height: 2px; background: currentColor; }
+  .vid-card h2 { text-align: left; font-size: clamp(30px, 3.6vw, 44px); margin: 16px 0 14px; }
+  .vid-card .sub { color: var(--muted); font-size: 17px; margin-bottom: 22px; }
+  .vid-steps { list-style: none; border-block: 1px solid var(--line); padding: 16px 0; display: grid; gap: 12px; margin-bottom: 26px; }
+  .vid-steps li { display: flex; gap: 16px; font-weight: 700; font-size: 15px; color: #dbe4ff; }
+  .vid-steps b { color: #fff; font-size: 12px; padding-top: 2px; min-width: 18px; }
+  .vid-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #0c0e14; border: 1px solid var(--line); box-shadow: 0 24px 60px -24px rgba(0,0,0,.8); }
+  .vid-frame::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; z-index: 3; background: linear-gradient(90deg, var(--red) 0 30%, #fff 30% 33%, var(--cyan) 33% 78%, var(--gold) 78%); }
+  .vid-frame iframe, .vid-frame > img { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+  .vid-poster { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; background: radial-gradient(500px 300px at 78% 60%, rgba(230,57,70,.22), transparent 70%), radial-gradient(420px 260px at 20% 30%, rgba(34,211,238,.14), transparent 70%), #0c0e14; }
+  .vid-poster img { width: 92px; margin: 0 auto 14px; }
+  .vid-poster strong { display: block; font-size: 22px; }
+  .vid-poster span { color: var(--muted); font-size: 14px; }
+  .vid-play { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.45)); border: 0; cursor: pointer; color: #fff; }
+  .vid-play span { width: 78px; height: 78px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(180deg, var(--red2), var(--red)); box-shadow: 0 14px 40px -8px rgba(230,57,70,.8); transition: transform .2s; }
+  .vid-play:hover span { transform: scale(1.08); }
+  .vid-play svg { width: 30px; height: 30px; margin-left: 4px; fill: #fff; }
+  @media (max-width: 900px) { .vid-card { grid-template-columns: 1fr; padding: 24px; gap: 26px; } .vid-card h2 { text-align: center; } .vid-kicker { justify-content: center; } .vid-card .btn { width: 100%; } }
+
+  /* Preços */
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+  .plan { position: relative; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 30px 26px; }
+  .plan.hot { background: linear-gradient(180deg, #1a1030, var(--panel)); border: 2px solid var(--red2); box-shadow: 0 24px 60px -24px rgba(230,57,70,.55); }
+  .plan .flag { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: linear-gradient(180deg, var(--red2), var(--red)); font-size: 12px; font-weight: 800; padding: 5px 14px; border-radius: 99px; white-space: nowrap; }
+  .plan h3 { font-size: 20px; }
+  .price { font-size: 46px; font-weight: 900; margin: 14px 0 2px; letter-spacing: -.03em; }
+  .price small { display: block; font-size: 15px; margin-top: 2px; color: var(--muted); font-weight: 600; letter-spacing: 0; }
+  .plan .sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  .plan ul { list-style: none; display: grid; gap: 10px; margin-bottom: 26px; font-size: 15px; flex: 1; }
+  .plan li { display: flex; gap: 10px; }
+  .plan li::before { content: "✓"; color: var(--green); font-weight: 900; }
+  .plan .btn { width: 100%; }
+  .pnote { text-align: center; color: var(--muted); font-size: 14px; margin-top: 22px; }
+
+  /* FAQ */
+  .faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+  details[open] { border-color: rgba(34,211,238,.35); }
+  summary { cursor: pointer; list-style: none; padding: 20px 24px; font-weight: 700; font-size: 17px; display: flex; justify-content: space-between; gap: 14px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 24px; line-height: 1; color: var(--cyan); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 24px 22px; color: var(--muted); }
+
+  /* CTA final */
+  .final { text-align: center; background: radial-gradient(700px 320px at 50% 0, rgba(230,57,70,.2), transparent 70%), var(--bg2); border-top: 1px solid var(--line); }
+  .final img { width: 150px; margin: 0 auto 18px; }
+  .final p { color: var(--muted); font-size: 18px; max-width: 34em; margin: 0 auto 28px; }
+
+  footer { padding: 40px 0 100px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
+  .foot a:hover { color: #fff; }
+  .legal { margin-top: 22px; font-size: 12px; color: #6f7ba0; max-width: 900px; }
+
+  /* CTA fixo no celular */
+  .sticky { display: none; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; }
+  .sticky .btn { width: 100%; box-shadow: 0 16px 40px -8px rgba(0,0,0,.8), 0 10px 30px -8px rgba(230,57,70,.65); }
+
+  /* Entrada suave */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .6s, transform .6s; }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .hero-art img, .eyebrow i { animation: none; } html { scroll-behavior: auto; } }
+
+  @media (max-width: 900px) {
+    nav.links { display: none; }
+    .hero { padding-top: 104px; }
+    .hero-grid, .show, .vs { grid-template-columns: 1fr; }
+    .show.rev .show-art { order: 0; }
+    .hero-art { order: -1; }
+    .hero-art img { width: min(300px, 70%); }
+    .chip { display: none; }
+    .feats, .steps, .plans { grid-template-columns: 1fr; }
+    .strip-in { grid-template-columns: 1fr 1fr; gap: 8px; }
+    section { padding: 70px 0; }
+    .show-txt h2 { text-align: center; }
+    .sticky { display: block; }
+    .nav .btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#topo" class="brand" aria-label="Poke World Bot">
+      <img src="assets/icon-192.png" width="38" height="38" alt="Ícone do Poke World Bot">
+      <span>POKE WORLD <b>BOT</b></span>
+    </a>
+    <nav class="links" aria-label="Principal">
+      <a href="#contas">Contas</a>
+      <a href="#video">Vídeo</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#planos">Planos</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <a class="btn btn-primary" href="https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe" rel="noopener">Baixar grátis</a>
+  </div>
+</header>
+
+<main id="topo">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><i></i> Bot para Poke Idle World • Windows 10 e 11</span>
+      <h1>Farme no Poke Idle World <span class="grad">no automático</span> e veja o lucro real por hora</h1>
+      <p class="lead">O <strong>Poke World Bot</strong> caça, vende no Mark, reabastece pokébolas e poções e ainda mostra <strong>quanto você realmente ganha</strong>. Tudo em até <strong>4 contas ao mesmo tempo</strong>, enquanto você faz outra coisa.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+          Baixar grátis para Windows
+        </a>
+        <!-- TROQUE o link abaixo pelo convite do seu servidor do Discord -->
+        <a class="btn-discord" href="https://discord.gg/SEU_CONVITE" target="_blank" rel="noopener noreferrer" aria-label="Entrar no Discord do bot">
+          <svg viewBox="0 0 127.14 96.36" aria-hidden="true"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,45.91,53.92,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,45.91,96.15,53,91.08,65.69,84.69,65.69Z"/></svg>
+          <span><small>Comunidade oficial</small><b>Entre no Discord do bot</b></span><em>→</em>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#recursos">Ver o que ele faz</a>
+      </div>
+      <div class="fine"><span>30 minutos de teste grátis</span><span>Sem cartão de crédito</span><span>Atualiza sozinho</span></div>
+    </div>
+    <div class="hero-art">
+      <div class="halo"></div>
+      <img src="assets/icon.webp" width="640" height="640" alt="Mascote do Poke World Bot: uma pokébola robô com antenas" fetchpriority="high">
+      <div class="chip a"><span class="g">● Auto Hunt ativo</span><small>Scyther · troca em Lv.150</small></div>
+      <div class="chip b"><span class="y">Venda no Mark</span><small>itens e Pokémon filtrados</small></div>
+      <div class="chip c"><span class="c">Refill automático</span><small>bolas e poções sempre no alvo</small></div>
+      <div class="chip d"><span class="y">⭐ Game Pass</span><small>missões e BPP no automático</small></div>
+      <div class="chip e"><span class="g">🏛 Auto Ginásio</span><small>desafia os líderes por você</small></div>
+      <div class="chip f"><span class="c">+8 módulos únicos</span><small>Pesca, Breeding, Analyzer, Pokédex…</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap strip-in">
+    <div class="si"><i>🖥️</i><div><b>Controle 4 contas</b><span>simultaneamente, cada uma isolada</span></div></div>
+    <div class="si"><i>⭐</i><div><b>Missões + Battle Pass</b><span>Quests e Game Pass no automático</span></div></div>
+    <div class="si"><i>🏛️</i><div><b>Auto Ginásio</b><span>desafia os líderes por você</span></div></div>
+    <div class="si"><i>📖</i><div><b>Auto Pokédex</b><span>captura o que ainda falta</span></div></div>
+    <div class="si"><i>🎯</i><div><b>Sem a VIP do jogo</b><span>Jogar pokébola, curar e reviver</span></div></div>
+    <div class="si"><i>✨</i><div><b>Muito mais funções</b><span>Pesca, Breeding, Analyzer e mais</span></div></div>
+  </div>
+</div>
+
+<!-- MULTI-CONTA -->
+<section id="contas">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Multi-conta</span>
+      <h2>Controle <span class="grad">4 contas</span> simultaneamente</h2>
+      <p>Cada conta abre em sua própria janela, lado a lado, e cada uma faz uma coisa diferente: aqui, três caçando em hunts diferentes e uma pescando, tudo na mesma tela.</p>
+    </div>
+    <img class="shot-big rv" src="assets/prints/contas.webp" width="1912" height="1031" alt="Poke World Bot com 4 contas abertas ao mesmo tempo: três caçando em hunts diferentes e uma pescando" loading="lazy">
+    <p class="note" style="margin-top:12px">Poke World Bot com 4 contas abertas. Clique para ampliar.</p>
+    <ul class="ticks contas-ticks">
+      <li class="rv">4 janelas do jogo na mesma tela, uma por conta</li>
+      <li class="rv">Cada conta isolada, com login e sessão próprios</li>
+      <li class="rv">Memória e CPU de cada janela sempre à vista</li>
+      <li class="rv">Tela cheia de uma conta e volta para a grade num clique</li>
+    </ul>
+  </div>
+</section>
+
+<!-- VÍDEO TUTORIAL -->
+<section id="video">
+  <div class="wrap">
+    <div class="vid-card rv">
+      <div>
+        <span class="vid-kicker">Tutorial em vídeo</span>
+        <h2>Veja o Poke World Bot funcionando</h2>
+        <p class="sub">Aprenda a instalar, conectar suas contas e iniciar as automações em um passo a passo direto.</p>
+        <ol class="vid-steps">
+          <li><b>01</b> Instalação e primeiro acesso</li>
+          <li><b>02</b> Conexão e configuração das contas</li>
+          <li><b>03</b> Início e acompanhamento das automações</li>
+        </ol>
+        <!-- Depois de publicar o vídeo: coloque o ID em data-youtube (ex.: dQw4w9WgXcQ) e o link do canal/vídeo em data-url. -->
+        <a class="btn btn-ghost" id="vid-link" href="#" rel="noopener" hidden>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Assistir no YouTube
+        </a>
+      </div>
+      <div class="vid-frame" id="vid" data-youtube="" data-url="">
+        <div class="vid-poster">
+          <div>
+            <img src="assets/icon.webp" width="92" height="92" alt="" loading="lazy">
+            <strong>Vídeo em breve</strong>
+            <span>O tutorial completo será publicado aqui.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOR -> SOLUÇÃO -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Chega de farm manual</span>
+      <h2>Seu tempo vale mais que clicar em Cerulean</h2>
+      <p>Idle de verdade é o jogo jogando por você. O Poke World Bot faz a parte chata e ainda mostra onde vale a pena caçar.</p>
+    </div>
+    <div class="vs rv">
+      <div class="bad">
+        <h3>Sem o bot</h3>
+        <ul>
+          <li>Voltar para Cerulean toda hora para vender e comprar</li>
+          <li>Ficar sem pokébola ou poção no meio da caçada</li>
+          <li>Não saber se a hunt dá lucro depois de descontar as bolas</li>
+          <li>Perder horas de farm quando o jogo congela</li>
+          <li>Uma conta por vez, sempre olhando a tela</li>
+        </ul>
+      </div>
+      <div class="good">
+        <h3>Com o Poke World Bot</h3>
+        <ul>
+          <li>Vende sozinho no Mark, protegendo os itens que você travou</li>
+          <li>Reabastece bolas e poções até a quantidade que você definir</li>
+          <li>Painel com lucro real por hora, drops e custo das bolas usadas</li>
+          <li>Detecta congelamento e retoma o que estava fazendo</li>
+          <li>Até 4 contas rodando ao mesmo tempo, cada uma isolada</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECURSOS -->
+<section id="recursos" style="background:var(--bg2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Recursos</span>
+      <h2>Tudo que o seu farm precisa, num só aplicativo</h2>
+      <p>Cada módulo liga e desliga separadamente. Use só o que quiser. Clique em um print para ampliar.</p>
+      <p style="font-size:13px;color:#6f7ba0;margin-top:6px">Prints demonstrativos, com dados fictícios.</p>
+    </div>
+    <div class="feats">
+      <article class="feat rv"><figure class="shot" hidden data-shot="auto-hunt"><img src="assets/prints/auto-hunt.webp" alt="Print do módulo Auto Hunt no Poke World Bot"></figure><div class="ico">⚔️</div><h3>Auto Hunt</h3><p>Caça no automático, com troca de hunt por nível do Pokémon e retomada sozinha depois de vender ou reabastecer.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="auto-seller"><img src="assets/prints/auto-seller.webp" alt="Print do módulo Auto Seller no Poke World Bot"></figure><div class="ico">💰</div><h3>Auto Seller</h3><p>Vai ao Mark, vende itens e Pokémon pelos filtros que você escolher e respeita os itens que você deixou travados.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="auto-refill"><img src="assets/prints/auto-refill.webp" alt="Print do módulo Auto Refill no Poke World Bot"></figure><div class="ico">🎒</div><h3>Auto Refill</h3><p>Compra pokébolas e poções até a quantidade-alvo, para o macro nunca parar por falta de suprimento.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="analise-cacada"><img src="assets/prints/analise-cacada.webp" alt="Print do módulo Análise da caçada no Poke World Bot"></figure><div class="ico">📊</div><h3>Análise da caçada</h3><p>Lucro real por hora com o custo das bolas que você realmente lançou, drops e comparativo entre hunts.</p><span class="tag">Exclusivo</span></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="auto-pesca"><img src="assets/prints/auto-pesca.webp" alt="Print do módulo Auto Pesca no Poke World Bot"></figure><div class="ico">🎣</div><h3>Auto Pesca</h3><p>Pesca sozinho e passa para a próxima faixa assim que o seu nível de pesca liberar.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="poke-analyzer"><img src="assets/prints/poke-analyzer.webp" alt="Print do módulo Poke Analyzer no Poke World Bot"></figure><div class="ico">🧬</div><h3>Poke Analyzer</h3><p>Lê seus Pokémon e estima IVs e potencial, sem mover, trocar ou vender nada.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="breeding"><img src="assets/prints/breeding.webp" alt="Print do módulo Breeding Advisor no Poke World Bot"></figure><div class="ico">🥚</div><h3>Breeding Advisor</h3><p>Sugere os melhores cruzamentos usando só os Pokémon que você já tem, com a cotação do jogo.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="quests"><img src="assets/prints/quests.webp" alt="Print do módulo Quests no Poke World Bot"></figure><div class="ico">📜</div><h3>Quests</h3><p>Faz as quests dos NPCs uma por uma: vai para a hunt certa de cada objetivo (derrotar, capturar ou entregar item), espera o progresso e resgata a recompensa.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="game-pass"><img src="assets/prints/game-pass.webp" alt="Print do módulo Game Pass no Poke World Bot"></figure><div class="ico">⭐</div><h3>Game Pass</h3><p>Percorre as missões de derrotar Pokémon que você escolher, caça cada espécie na hunt compatível e resgata os BPP e as recompensas. Nunca compra o Premium.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="auto-gym"><img src="assets/prints/auto-gym.webp" alt="Print do módulo Auto Gym no Poke World Bot"></figure><div class="ico">🏟️</div><h3>Auto Gym</h3><p>Automatiza os ginásios para você avançar sem ficar preso na tela.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="pokedex"><img src="assets/prints/pokedex.webp" alt="Print do módulo Pokédex no Poke World Bot"></figure><div class="ico">📖</div><h3>Pokédex</h3><p>Percorre o que falta capturar e registra tudo no log, para completar a Pokédex sem esforço.</p></article>
+      <article class="feat rv"><figure class="shot" hidden data-shot="anti-congelamento"><img src="assets/prints/anti-congelamento.webp" alt="Print do módulo Detector de congelamento no Poke World Bot"></figure><div class="ico">🛡️</div><h3>Detector de congelamento</h3><p>Se o personagem para de andar e as kills param, o bot volta para Cerulean e retoma a última ação.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" style="background:var(--bg2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Como funciona</span>
+      <h2>Em 3 passos você já está farmando</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><h3>Baixe e instale</h3><p>Um instalador para Windows. Ao abrir, o app verifica se há versão nova e se atualiza sozinho.</p></div>
+      <div class="step rv"><h3>Crie a conta e teste</h3><p>Confirme o e-mail com um código e ganhe 30 minutos com tudo liberado. Sem cartão.</p></div>
+      <div class="step rv"><h3>Ligue os módulos</h3><p>Escolha a hunt, defina venda e reabastecimento, ative o que quiser e deixe o bot trabalhar.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:44px" class="rv">
+      <a class="btn btn-primary btn-lg" href="https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe" rel="noopener">Baixar e testar grátis</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Planos</span>
+      <h2>Comece grátis. Pague só se gostar.</h2>
+      <p>Todos os planos liberam todos os recursos. A única diferença é o prazo.</p>
+    </div>
+    <div class="plans">
+      <div class="plan rv">
+        <h3>Teste grátis</h3>
+        <div class="price">R$ 0 <small>/ 30 min</small></div>
+        <p class="sub">Para conhecer o app sem compromisso.</p>
+        <ul><li>Todos os recursos liberados</li><li>Sem cartão de crédito</li><li>Começa ao criar a conta</li></ul>
+        <a class="btn btn-ghost" href="https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe" rel="noopener">Baixar e testar</a>
+      </div>
+      <div class="plan rv">
+        <h3>Plano Mensal</h3>
+        <div class="price">R$ 29,90 <small>/ 30 dias</small></div>
+        <p class="sub">Acesso por 30 dias, renovável quando quiser.</p>
+        <ul><li>Todos os recursos</li><li>Até 4 contas</li><li>Atualizações automáticas</li><li>Suporte por e-mail</li></ul>
+        <a class="btn btn-ghost" href="https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe" rel="noopener">Começar pelo teste</a>
+      </div>
+      <div class="plan hot rv">
+        <span class="flag">Melhor custo-benefício</span>
+        <h3>Acesso Vitalício</h3>
+        <div class="price">R$ 249,90 <small>pagamento único</small></div>
+        <p class="sub">Pague uma vez e use sem prazo de validade.</p>
+        <ul><li>Todos os recursos, para sempre</li><li>Até 4 contas</li><li>Atualizações automáticas</li><li>Suporte por e-mail</li></ul>
+        <a class="btn btn-primary" href="https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe" rel="noopener">Começar pelo teste</a>
+      </div>
+    </div>
+    <p class="pnote">Você assina dentro do aplicativo, depois de testar. Pagamento processado com segurança.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Dúvidas</span>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details class="rv"><summary>O que é o Poke World Bot?</summary><p>É um aplicativo para Windows que abre o jogo dentro dele e automatiza o farm: caça, venda no Mark, reabastecimento de pokébolas e poções, pesca, análise de Pokémon e muito mais, em até 4 contas ao mesmo tempo.</p></details>
+      <details class="rv"><summary>Como funciona o teste grátis?</summary><p>Você baixa o instalador, cria sua conta, confirma o e-mail com um código e ganha 30 minutos de acesso com todos os recursos liberados. Não pede cartão.</p></details>
+      <details class="rv"><summary>Quanto custa?</summary><p>O Plano Mensal custa R$ 29,90 por 30 dias e o Acesso Vitalício custa R$ 249,90 em pagamento único. Você escolhe dentro do aplicativo, depois de testar.</p></details>
+      <details class="rv"><summary>Preciso deixar o computador ligado?</summary><p>Sim. O bot roda no seu PC, dentro do aplicativo. Ele é leve e você pode usar o computador normalmente enquanto ele trabalha.</p></details>
+      <details class="rv"><summary>O aplicativo atualiza sozinho?</summary><p>Sim. Ao abrir, ele verifica se existe versão nova, baixa e instala sem perguntar. Isso garante que você sempre use a versão mais estável.</p></details>
+      <details class="rv"><summary>Posso usar em mais de uma conta?</summary><p>Pode. Cada conta do jogo abre em uma janela própria e isolada, até 4 ao mesmo tempo, e você vê o consumo de memória e CPU de cada uma.</p></details>
+      <details class="rv"><summary>Funciona em Mac ou Linux?</summary><p>Por enquanto, apenas em Windows 10 e 11.</p></details>
+      <details class="rv"><summary>Usar um bot é seguro para a minha conta no jogo?</summary><p>Automação pode ir contra as regras de alguns jogos e a responsabilidade pelo uso é de cada jogador. O Poke World Bot é um aplicativo independente e não tem vínculo com o jogo. Leia as regras do jogo antes de usar e use com bom senso.</p></details>
+      <details class="rv"><summary>Como falo com o suporte?</summary><p>Pelo e-mail <a href="mailto:pwbidle@gmail.com" style="color:var(--cyan)">pwbidle@gmail.com</a>. O botão de suporte dentro do aplicativo já abre a mensagem pronta, com a versão instalada.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap rv">
+    <img src="assets/icon.webp" width="150" height="150" alt="" loading="lazy">
+    <h2>Deixe o bot trabalhar. <span class="grad">Você joga o que quiser.</span></h2>
+    <p>Baixe agora e teste 30 minutos com tudo liberado. Se não gostar, é só desinstalar.</p>
+    <a class="btn btn-primary btn-lg" href="https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+      Baixar grátis para Windows
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="brand" style="font-size:16px"><img src="assets/icon-192.png" width="30" height="30" alt="" loading="lazy"><span>POKE WORLD <b>BOT</b></span></div>
+      <div><a href="mailto:pwbidle@gmail.com">pwbidle@gmail.com</a> · <a href="https://github.com/leotrolez/pwb-releases/releases" rel="noopener">Versões</a></div>
+    </div>
+    <p class="legal">O Poke World Bot é um aplicativo independente, criado por fãs do jogo, sem vínculo, parceria ou aprovação dos desenvolvedores do Poke Idle World nem dos detentores dos direitos de Pokémon (Nintendo, Game Freak, The Pokémon Company). Nomes e marcas citados pertencem aos seus respectivos donos e são usados apenas para identificar a compatibilidade.</p>
+  </div>
+</footer>
+
+<div class="sticky"><a class="btn btn-primary" href="https://github.com/leotrolez/pwb-releases/releases/latest/download/PWB-Setup.exe" rel="noopener">Baixar grátis · 30 min de teste</a></div>
+
+<script>
+
+  // Prints do bot: cada card procura assets/prints/<nome>.webp (depois .png e .jpg); sem arquivo, o espaço nem aparece.
+  (function () {
+    var exts = ['webp', 'png', 'jpg'];
+    function probe(slug, done) {
+      (function next(i) {
+        if (i >= exts.length) return;
+        var im = new Image();
+        im.onload = function () { done(im.src); };
+        im.onerror = function () { next(i + 1); };
+        im.src = 'assets/prints/' + slug + '.' + exts[i];
+      })(0);
+    }
+    var box = document.createElement('dialog'); box.className = 'lightbox';
+    box.innerHTML = '<img alt=""><p></p>'; document.body.appendChild(box);
+    box.addEventListener('click', function () { box.close(); });
+    function zoom(src, alt) { var i = box.querySelector('img'); i.src = src; i.alt = alt; box.querySelector('p').textContent = alt + ' (clique para fechar)'; if (box.showModal) box.showModal(); }
+    document.querySelectorAll('figure.shot').forEach(function (fig) {
+      var img = fig.querySelector('img');
+      probe(fig.getAttribute('data-shot'), function (src) { img.src = src; fig.hidden = false; });
+      fig.addEventListener('click', function () { zoom(img.src, img.alt); });
+    });
+    var mock = document.getElementById('analise-mock');
+    if (mock) probe('analise', function (src) {
+      var real = new Image(); real.className = 'shot-big'; real.alt = 'Print da análise da caçada no Poke World Bot'; real.src = src;
+      real.addEventListener('click', function () { zoom(src, real.alt); });
+      mock.replaceWith(real);
+      var n = document.getElementById('analise-note'); if (n) n.remove();
+    });
+    document.querySelectorAll('img.shot-big').forEach(function (im) { im.addEventListener('click', function () { zoom(im.currentSrc || im.src, im.alt); }); });
+  })();
+
+
+  // Vídeo tutorial: sem ID, mostra "em breve"; com ID, carrega o player só ao clicar (mais leve e privado).
+  (function () {
+    var box = document.getElementById('vid'); if (!box) return;
+    var id = (box.getAttribute('data-youtube') || '').trim(), url = (box.getAttribute('data-url') || '').trim();
+    var link = document.getElementById('vid-link');
+    if (url || id) { link.href = url || ('https://www.youtube.com/watch?v=' + id); link.hidden = false; }
+    if (!id) return;
+    box.innerHTML = '<img src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="Tutorial do Poke World Bot em vídeo" loading="lazy">' +
+      '<button class="vid-play" type="button" aria-label="Assistir ao vídeo"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>';
+    box.querySelector('button').addEventListener('click', function () {
+      box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0" title="Tutorial do Poke World Bot" allow="accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    });
+    var ld = document.createElement('script'); ld.type = 'application/ld+json';
+    ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'VideoObject', name: 'Poke World Bot funcionando: instalação e automações', description: 'Passo a passo para instalar, conectar as contas e iniciar as automações do Poke World Bot.', thumbnailUrl: 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg', embedUrl: 'https://www.youtube-nocookie.com/embed/' + id, uploadDate: new Date().toISOString().slice(0, 10) });
+    document.head.appendChild(ld);
+  })();
+
+  // Entrada suave dos blocos; sem JS ou sem IntersectionObserver tudo já fica visível.
+  (function () {
+    var els = document.querySelectorAll('.rv');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+<noscript><style>.rv{opacity:1;transform:none}</style></noscript>
+</body>
+</html>
