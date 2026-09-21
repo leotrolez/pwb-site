@@ -4,7 +4,7 @@ Site estático (1 HTML, sem dependências externas, carrega rápido). Para publi
 estática grátis (Cloudflare Pages, Netlify, GitHub Pages) e aponte seu domínio.
 
 ## Antes de publicar
-1. Troque `https://pwb-ten.vercel.app` pelo endereço real em: `index.html` (canonical, og:url, og:image, twitter:image, JSON-LD),
+1. Troque `https://pokeworldbot.vercel.app` pelo endereço real em: `index.html` (canonical, og:url, og:image, twitter:image, JSON-LD),
    `robots.txt` e `sitemap.xml`.
 2. Os botões de download baixam `download/PWB-Instalador.exe` (~170 KB). É um instalador leve: ele baixa o instalador completo do app direto das releases do GitHub (a versão mais nova; se a consulta falhar, usa a 1.0.2), confere o hash e abre. Se a versão for mais antiga, o próprio app se atualiza sozinho na primeira abertura. Código em `tools/downloader/` do repositório do app; para recompilar: `powershell -File tools/downloader/build.ps1` e copie `dist/PWB-Instalador.exe` para `download/`.
 
